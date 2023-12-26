@@ -55,7 +55,7 @@
         };
     in {
       nixosConfigurations = {
-        exampleHost = mkHost "exampleHost" "x86_64-linux";
+        bertha = mkHost "bertha" "x86_64-linux";
       };
     };
 }
