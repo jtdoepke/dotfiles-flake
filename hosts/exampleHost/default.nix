@@ -2,18 +2,18 @@
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
-      bootDevices = [ "bootDevices_placeholder" ];
+      bootDevices = [ "ata-Samsung_SSD_860_PRO_1TB_S5G8NS0R104172Z" "ata-Samsung_SSD_860_PRO_1TB_S5G8NS0R104173P" ];
       immutable.enable = false;
       removableEfi = true;
-      luks.enable = false;
+      luks.enable = true;
     };
   };
-  boot.initrd.availableKernelModules = [ "kernelModules_placeholder" ];
+  boot.initrd.availableKernelModules = [  "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.kernelParams = [ ];
-  networking.hostId = "abcd1234";
+  networking.hostId = "35690e3b";
   # read changeHostName.txt file.
   networking.hostName = "exampleHost";
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "America/Chicago";
 
   # import preconfigured profiles
   imports = [
