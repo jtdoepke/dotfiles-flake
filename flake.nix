@@ -56,6 +56,7 @@
     in {
       nixosConfigurations = {
         bertha = mkHost "bertha" "x86_64-linux";
+        bertha-vm = mkHost "bertha-vm" "x86_64-linux";
       };
     };
 }
