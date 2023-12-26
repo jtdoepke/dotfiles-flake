@@ -72,6 +72,11 @@ in {
     doas.enable = true;
     sudo.enable = false;
   };
+  security.doas.extraRules = [{
+    users = [ "jtdoepke" ];
+    keepEnv = true;
+    persist = true;
+  }];
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
