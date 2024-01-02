@@ -73,7 +73,6 @@ in
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
-      mg # emacs-like editor
       jq # other programs
       ;
     # By default, the system will only use packages from the
