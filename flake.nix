@@ -10,9 +10,16 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+    }@inputs:
     let
-      mkHost = hostName: system:
+      mkHost =
+        hostName: system:
         nixpkgs.lib.nixosSystem {
           pkgs = import nixpkgs {
             inherit system;
@@ -53,7 +60,8 @@
             }
           ];
         };
-    in {
+    in
+    {
       nixosConfigurations = {
         bertha = mkHost "bertha" "x86_64-linux";
         bertha-vm = mkHost "bertha-vm" "x86_64-linux";

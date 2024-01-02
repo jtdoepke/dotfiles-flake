@@ -1,4 +1,12 @@
-{ config, pkgs, lib, inputs, modulesPath, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  modulesPath,
+  ...
+}:
+{
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";

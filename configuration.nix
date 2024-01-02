@@ -1,8 +1,15 @@
 # configuration in this file is shared by all hosts
 
-{ pkgs, pkgs-unstable, inputs, ... }:
-let inherit (inputs) self;
-in {
+{
+  pkgs,
+  pkgs-unstable,
+  inputs,
+  ...
+}:
+let
+  inherit (inputs) self;
+in
+{
   # Enable NetworkManager for wireless networking,
   # You can configure networking with "nmtui" command.
   networking.useDHCP = true;
@@ -36,12 +43,17 @@ in {
 
   services.openssh = {
     enable = true;
-    settings = { PasswordAuthentication = false; };
+    settings = {
+      PasswordAuthentication = false;
+    };
   };
 
   boot.zfs.forceImportRoot = false;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   boot.initrd.systemd.enable = true;
 
@@ -51,17 +63,19 @@ in {
     doas.enable = true;
     sudo.enable = false;
   };
-  security.doas.extraRules = [{
-    users = [ "jtdoepke" ];
-    keepEnv = true;
-    persist = true;
-  }];
+  security.doas.extraRules = [
+    {
+      users = [ "jtdoepke" ];
+      keepEnv = true;
+      persist = true;
+    }
+  ];
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
       mg # emacs-like editor
       jq # other programs
-    ;
+      ;
     # By default, the system will only use packages from the
     # stable channel. i.e.
     # inherit (pkg) my-favorite-stable-package;
@@ -74,10 +88,8 @@ in {
 
   # Safety mechanism: refuse to build unless everything is
   # tracked by git
-  system.configurationRevision = if (self ? rev) then
-    self.rev
-  else
-    throw "refuse to build: git tree is dirty";
+  system.configurationRevision =
+    if (self ? rev) then self.rev else throw "refuse to build: git tree is dirty";
 
   system.stateVersion = "23.11";
 

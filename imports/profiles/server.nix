@@ -1,6 +1,1 @@
-{
-  imports = [
-    ../users/common.nix
-  ];
-}
-
+{ imports = [ ../users/common.nix ]; }
