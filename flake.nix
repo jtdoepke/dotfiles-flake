@@ -25,7 +25,7 @@
             inherit system;
             # settings to nixpkgs goes to here
             # nixpkgs.pkgs.zathura.useMupdf = true;
-            # nixpkgs.config.allowUnfree = false;
+            nixpkgs.config.allowUnfree = true;
           };
 
           specialArgs = {
@@ -36,6 +36,7 @@
             pkgs-unstable = import nixpkgs-unstable {
               inherit system;
               # settings to nixpkgs-unstable goes to here
+              nixpkgs.config.allowUnfree = true;
             };
 
             # make all inputs availabe in other nix files
