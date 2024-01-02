@@ -87,9 +87,18 @@ in
   };
 
   # Safety mechanism: refuse to build unless everything is
-  # tracked by git
+  # tracked by git ... unless this is a pre-commit hook.
   system.configurationRevision =
-    if (self ? rev) then self.rev else throw "refuse to build: git tree is dirty";
+    let
+      is_pre_commit = builtins.getEnv "PRE_COMMIT" == "1";
+    in
+      if (self ? rev) then
+        self.rev
+      else if is_pre_commit then
+        "HEAD"
+      else
+        throw "refuse to build: git tree is dirty";
+      
 
   system.stateVersion = "23.11";
 

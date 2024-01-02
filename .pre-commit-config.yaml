@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: nix-flake-check
+        name: nix flake check
+        language: system
+        entry: 'nix flake check --impure' # --impure so configuration.nix can read the PRE_COMMIT env var and not throw an error about the git tree being dirty.
+        pass_filenames: false
+        always_run: true
